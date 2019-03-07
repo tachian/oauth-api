@@ -1,0 +1,27 @@
+default: &default
+  adapter: mysql2
+  reconnect: true
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: oauthApi
+  username: root
+  password: 123456
+  host: localhost
+
+test:
+  <<: *default
+  database: oauthApitst 
+  username: root
+  password: 123456
+  host: localhost
+
+production:
+  <<: *default
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
